@@ -1,33 +1,51 @@
 'use client';
 import { createContext, useState } from "react";
 
-export const dashboard = createContext();
+export const DashboardContext = createContext();
 
-export const AppProvider = ({children})=>{
-    const [show,setShow] = useState(false);
-    const [mode,setMode] = useState(false);
- const showSide = ()=>{
-    setShow(!show)
- }
+export const AppProvider = ({ children }) => {
+  const [state, setState] = useState({
+    show: false,
+    mode: false,
+    settings:false
+  });
 
- const toggleMode = ()=>{
-    setMode(!mode)
- }
+  // Toggle show
+  const toggleShow = () => {
+    setState(prevState => ({
+      ...prevState,
+      show: !prevState.show
+    }));
+  };
 
+  // Toggle mode
+  const toggleMode = () => {
+    setState(prevState => ({
+      ...prevState,
+      mode: !prevState.mode
+    }));
+  };
+  //Toggle Settings
 
-
-
-    const values ={
-        show,
-        showSide,
-        mode,
-        toggleMode,
-    }
-
-
-    return(
-        <dashboard.Provider value={values}>
-            {children}
-        </dashboard.Provider>
-    )
+const toggleSettings=()=>{
+    setState(prevState=>({
+        ...prevState,
+        settings:!prevState.settings
+    }))
 }
+
+  const values = {
+    show: state.show,
+    mode: state.mode,
+    settings:state.settings,
+    toggleShow,
+    toggleMode,
+    toggleSettings
+  };
+
+  return (
+    <DashboardContext.Provider value={values}>
+      {children}
+    </DashboardContext.Provider>
+  );
+};
