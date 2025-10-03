@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { DashboardContext } from "@/context/DashBoardContext"; // make sure the name matches
 import Image from "next/image";
 import Link from "next/link";
@@ -20,18 +20,50 @@ export default function SideBar() {
     { text: "Pages", link: "/pages", icon: "pages.svg" },
   ];
 
-  const { show } = useContext(DashboardContext);
+  const { show, toggleShow } = useContext(DashboardContext);
 
   return (
     <aside
-      className={`h-lvh bg-gray-200/40 py-[30px] px-[10px] flex flex-col gap-[50px] overflow-hidden transition-all duration-300 ease-in-out ${show ? 'w-[300px]' : 'w-[60px]'}`}
+      className={`h-lvh bg-gray-200/40 py-[30px] px-[10px] 
+        max-md:bg-gray-200
+        flex flex-col gap-[50px] overflow-hidden 
+        transition-all duration-300 ease-in-out 
+        md:hover:w-[300px]
+        
+        ${
+          show
+            ? `w-[300px] max-md:fixed max-md:z-20 max-md:w-full`
+            : `w-[60px] max-md:w-0 max-md:p-0`
+        }
+        
+        `}
     >
       {/* Logo */}
-      <div className="logo flex items-center gap-[10px]">
-        <div className="img w-[40px] h-[40px] bg-amber-100 rounded-full overflow-hidden relative shrink-0">
-          <Image fill src="/admin.webp" alt="admin pic" className="absolute object-cover" priority />
+      <div
+        className={`max-md:flex max-md:justify-between max-md:items-center
+        max-md:px-[20px]
+        `}
+      >
+        <div className="logo flex items-center gap-[10px]">
+          <div className="img w-[40px] h-[40px] bg-amber-100 rounded-full overflow-hidden relative shrink-0">
+  <Image
+    src="/admin.webp"
+    alt="admin pic"
+    fill
+    sizes="40px"
+    priority
+    className="object-cover"
+  />
+</div>
+          Admin
         </div>
-        {show && "Admin"}
+        {/* close button --> small screens  */}
+        <button
+          className="close hidden max-md:block w-[30px] h-[30px] overflow-hidden relative border rounded-full"
+          onClick={toggleShow}
+        >
+          <Image src="close.svg" alt="close icon" width={30} height={30} />
+        </button>
       </div>
 
       {/* Menu */}
@@ -39,24 +71,45 @@ export default function SideBar() {
         {items.map((item, index) => (
           <li
             key={index}
-            className={`flex flex-col items-center overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? "h-[80px]" : "h-[40px]"} rounded-md`}
+            className={`overflow-hidden transition-all duration-500 ease-in-out ${
+              openIndex === index ? "h-[80px]" : "h-[40px]"
+            } rounded-md`}
           >
-            <button className="bg-violet-200 flex flex-col gap-[15px] w-full p-[10px]" onClick={() => toggle(index)}>
-              <span className="flex justify-between items-center">
-                <span className="flex items-center gap-[10px]">
-                  <span className="w-[22px] h-[22px] overflow-hidden relative">
-                    <Image fill src={item.icon} alt={item.text} className="absolute object-contain" />
+            <button
+              className={`bg-violet-200 flex flex-col gap-[15px] w-full p-[9px]
+                `}
+              onClick={() => toggle(index)}
+            >
+              <span className="flex justify-between items-center ">
+                <span className={`flex items-center gap-[10px] 
+                  `}>
+                  <span className={`w-[22px] h-[22px] overflow-hidden relative
+                  
+                    `}>
+                    <Image
+                      src={item.icon}
+                      alt={item.text}
+                      width={22}
+                      height={22}
+                    />
                   </span>
-                  {show && <span className="whitespace-nowrap">{item.text}</span>}
+                  
+                    <span className="whitespace-nowrap">{item.text}</span>
+                  
                 </span>
 
-                {show && (
-                  <span className="w-[30px] h-[22px] overflow-hidden relative shrink-0">
-                    <Image fill src="drop_arrow.svg" alt="arrow" className="absolute object-contain" />
+              
+                  <span className="w-[30px] h-[22px] flex justify-center items-center overflow-hidden relative shrink-0">
+                    <Image
+                      src="drop_arrow.svg"
+                      alt="arrow"
+                      width={30}
+                      height={22}
+                    />
                   </span>
-                )}
+            
               </span>
-              {show && <Link href={item.link}>{item.link}</Link>}
+             <Link href={item.link}>{item.link}</Link>
             </button>
           </li>
         ))}

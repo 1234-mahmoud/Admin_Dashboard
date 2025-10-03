@@ -1,7 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import SideBar from "@/components/SideBar";
-import Header from "@/components/Header";
+import "./globals.css";``
 import { AppProvider } from "@/context/DashBoardContext";
 import ParentComp from "@/components/ParentComp";
 
@@ -31,6 +29,7 @@ export default function RootLayout({ children }) {
       >
         <AppProvider>
           <ParentComp/>
+          {children}
         </AppProvider>
       </body>
     </html>

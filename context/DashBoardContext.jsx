@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState } from "react";
+import { createContext, useState,useCallback } from "react";
 
 export const DashboardContext = createContext();
 
@@ -7,32 +7,38 @@ export const AppProvider = ({ children }) => {
   const [state, setState] = useState({
     show: false,
     mode: false,
-    settings:false
+    settings:false,
+    user_profile:false,
   });
 
   // Toggle show
-  const toggleShow = () => {
-    setState(prevState => ({
-      ...prevState,
-      show: !prevState.show
-    }));
-  };
+const toggleShow = useCallback(() => {
+  setState(prev => ({ ...prev, show: !prev.show }));
+}, []);
 
   // Toggle mode
-  const toggleMode = () => {
+  const toggleMode = useCallback(() => {
     setState(prevState => ({
       ...prevState,
       mode: !prevState.mode
     }));
-  };
+  },[])
   //Toggle Settings
 
-const toggleSettings=()=>{
+const toggleSettings=useCallback(()=>{
     setState(prevState=>({
         ...prevState,
         settings:!prevState.settings
     }))
-}
+},[])
+
+const toggleUserProfile =useCallback( ()=>{
+  setState((prev)=>({
+    ...prev,
+    user_profile:!prev.user_profile
+  }))
+},[])
+
 
   const values = {
     show: state.show,
@@ -40,7 +46,9 @@ const toggleSettings=()=>{
     settings:state.settings,
     toggleShow,
     toggleMode,
-    toggleSettings
+    toggleSettings,
+    user_profile:state.user_profile,
+    toggleUserProfile
   };
 
   return (

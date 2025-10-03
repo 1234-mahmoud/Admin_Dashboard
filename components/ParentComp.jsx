@@ -5,7 +5,7 @@ import Header from "./Header";
 import { DashboardContext } from "@/context/DashBoardContext"; // make sure this matches
 
 export default function ParentComp() {
-  const { show, toggleShow, mode, toggleMode } = useContext(DashboardContext);
+  const { mode } = useContext(DashboardContext);
 
   return (
     <div className={`${mode ? 'bg-black/90 text-white' : ''} min-h-screen`}>
