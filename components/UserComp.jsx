@@ -4,7 +4,7 @@ import { DashboardContext } from "@/context/DashBoardContext";
 import Image from "next/image";
 
 export default function UserComp() {
-      const { show, toggleShow, mode, toggleMode,settings,toggleSettings } = useContext(DashboardContext);
+      const { mode, toggleMode,settings,toggleSettings } = useContext(DashboardContext);
     
   return (
 
@@ -36,7 +36,7 @@ export default function UserComp() {
 
         {/* user profile */}
         <div className="user flex items-center gap-[10px]" onClick={toggleSettings}>
-          <div className="img w-[40px] h-[40px] bg-amber-100 rounded-full overflow-hidden relative shrink-0">
+          <div className="img w-[40px] h-[40px] bg-white rounded-full overflow-hidden relative shrink-0">
   <Image
     src="/admin.webp"
     alt="admin pic"
@@ -48,7 +48,12 @@ export default function UserComp() {
 </div>
           <span className="flex items-center">
             Admin
-            <span className="w-[30px] h-[22px] overflow-hidden relative shrink-0">
+            <span className={`w-[30px] h-[22px] overflow-hidden relative shrink-0
+                   transition-all duration-500 ease-in-out
+              ${
+                settings?'-rotate-180':''
+              }
+              `}>
               <Image fill src="drop_arrow.svg" alt="arrow" className="absolute object-contain" />
             </span>
           </span>

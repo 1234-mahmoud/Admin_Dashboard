@@ -24,7 +24,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-lvh bg-gray-200/40 py-[30px] px-[10px] 
+      className={`h-lvh bg-white py-[30px] px-[10px] border-r-[1px] border-gray-400
         max-md:bg-gray-200
         flex flex-col gap-[50px] overflow-hidden 
         transition-all duration-300 ease-in-out 
@@ -33,7 +33,7 @@ export default function SideBar() {
         ${
           show
             ? `w-[300px] max-md:fixed max-md:z-20 max-md:w-full`
-            : `w-[60px] max-md:w-0 max-md:p-0`
+            : `w-[70px] max-md:w-0 max-md:p-0`
         }
         
         `}
@@ -44,7 +44,7 @@ export default function SideBar() {
         max-md:px-[20px]
         `}
       >
-        <div className="logo flex items-center gap-[10px]">
+        <div className="logo flex items-center gap-[20px] px-[3px]">
           <div className="img w-[40px] h-[40px] bg-amber-100 rounded-full overflow-hidden relative shrink-0">
   <Image
     src="/admin.webp"
@@ -71,17 +71,18 @@ export default function SideBar() {
         {items.map((item, index) => (
           <li
             key={index}
-            className={`overflow-hidden transition-all duration-500 ease-in-out ${
-              openIndex === index ? "h-[80px]" : "h-[40px]"
-            } rounded-md`}
+            className={`overflow-hidden transition-all duration-500 ease-in-out 
+              ${openIndex === index ? "h-[80px] bg-black/10" : "h-[40px]" } 
+            rounded-md`}
           >
             <button
-              className={`bg-violet-200 flex flex-col gap-[15px] w-full p-[9px]
+              className={`hover:bg-black/10 flex flex-col gap-[15px] w-full py-[9px]
+                px-[12px]
                 `}
               onClick={() => toggle(index)}
             >
               <span className="flex justify-between items-center ">
-                <span className={`flex items-center gap-[10px] 
+                <span className={`flex items-center gap-[15px] 
                   `}>
                   <span className={`w-[22px] h-[22px] overflow-hidden relative
                   
@@ -93,13 +94,18 @@ export default function SideBar() {
                       height={22}
                     />
                   </span>
-                  
-                    <span className="whitespace-nowrap">{item.text}</span>
+                
+                  <span className="whitespace-nowrap">{item.text}</span>
                   
                 </span>
 
               
-                  <span className="w-[30px] h-[22px] flex justify-center items-center overflow-hidden relative shrink-0">
+                  <span className={`w-[30px] h-[22px] flex justify-center items-center overflow-hidden relative shrink-0
+                    transition-all duration-500 ease-in-out
+                    ${
+                      openIndex === index ? '-rotate-180':''
+                    }
+                    `}>
                     <Image
                       src="drop_arrow.svg"
                       alt="arrow"
