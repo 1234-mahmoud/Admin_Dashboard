@@ -1,10 +1,11 @@
 'use client';
-import { useContext } from "react";
-import { DashboardContext } from "@/context/DashBoardContext";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMode, toggleSettings } from "@/store/dashboardSlice";
 import Image from "next/image";
 
 export default function UserComp() {
-      const { mode, toggleMode,settings,toggleSettings } = useContext(DashboardContext);
+  const dispatch = useDispatch();
+  const { mode, settings } = useSelector((state) => state.dashboard);
     
   return (
 
@@ -14,7 +15,7 @@ export default function UserComp() {
         {/* light / dark mode */}
         <div  className={`flex items-center gap-[15px]`}>
 
-        <button className="mode w-[20px] h-[20px] overflow-hidden relative bg-gray-200 rounded-full" onClick={toggleMode}>
+        <button className="mode w-[20px] h-[20px] overflow-hidden relative bg-gray-200 rounded-full" onClick={() => dispatch(toggleMode())}>
           {mode ? (
             <Image fill src="sun.svg" alt="light mode" className="absolute object-cover" />
           ) : (
@@ -35,7 +36,7 @@ export default function UserComp() {
   
 
         {/* user profile */}
-        <div className="user flex items-center gap-[10px]" onClick={toggleSettings}>
+        <div className="user flex items-center gap-[10px]" onClick={() => dispatch(toggleSettings())}>
           <div className="img w-[40px] h-[40px] bg-white rounded-full overflow-hidden relative shrink-0">
   <Image
     src="/admin.webp"

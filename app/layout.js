@@ -1,8 +1,6 @@
 import { Geist, Geist_Mono,Fredoka } from "next/font/google";
-import "./globals.css";``
-import { AppProvider } from "@/context/DashBoardContext";
-import ParentComp from "@/components/ParentComp";
-
+import "./globals.css";
+import ReduxProvider from "@/components/ReduxProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,9 +31,9 @@ export default function RootLayout({ children }) {
        
         `}
       >
-        <AppProvider>
-          <ParentComp>{children}</ParentComp>
-        </AppProvider>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );
