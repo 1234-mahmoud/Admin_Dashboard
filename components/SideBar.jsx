@@ -24,12 +24,12 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-auto bg-white py-[30px] px-[10px] border-r-[1px] border-gray-400
+      className={` min-h-lvh max-md:h-lvh bg-white py-[30px] px-[10px] border-r-[1px] border-gray-400
         max-md:bg-gray-200
         flex flex-col gap-[50px] overflow-hidden 
         transition-all duration-300 ease-in-out 
         md:hover:w-[300px]
-        
+       
         ${
           show
             ? `w-[300px] max-md:fixed max-md:z-20 max-md:w-full`
