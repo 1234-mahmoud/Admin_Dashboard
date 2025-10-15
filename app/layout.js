@@ -33,8 +33,7 @@ export default function RootLayout({ children }) {
         `}
       >
         <AppProvider>
-          <ParentComp/>
-          {children}
+          <ParentComp>{children}</ParentComp>
         </AppProvider>
       </body>
     </html>

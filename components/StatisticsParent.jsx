@@ -209,7 +209,7 @@ export default function StatisticsParent() {
             >
               <span>Today</span>
               <span className={`flex items-center gap-1`}>
-                $20k
+                $20k 
                 <svg
                   className="rotate-180"
                   xmlns="http://www.w3.org/2000/svg"

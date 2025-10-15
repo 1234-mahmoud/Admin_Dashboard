@@ -24,7 +24,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-lvh bg-white py-[30px] px-[10px] border-r-[1px] border-gray-400
+      className={`h-auto bg-white py-[30px] px-[10px] border-r-[1px] border-gray-400
         max-md:bg-gray-200
         flex flex-col gap-[50px] overflow-hidden 
         transition-all duration-300 ease-in-out 
