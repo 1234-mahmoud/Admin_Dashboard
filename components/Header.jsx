@@ -86,7 +86,7 @@ export default function Header() {
       {user_profile && (
         <div
           className={`hidden max-md:block max-md:w-full
-        max-md:bg-white max-md:absolute max-md:bottom-[-50px] max-md:px-[20px]`}
+        max-md:bg-white  max-md:px-[20px]`}
         >
           <UserComp />
         </div>
