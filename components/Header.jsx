@@ -4,7 +4,6 @@ import UserComp from "./UserComp";
 import { useDispatch, useSelector } from "react-redux";
 import {
   toggleShow,
-  toggleSettings,
   toggleUserProfile,
 } from "@/store/dashboardSlice";
 
