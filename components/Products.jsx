@@ -6,20 +6,13 @@ import {
   removeFromCart,
 } from "@/store/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
-
-const data = [
-  { id: 1, name: "Product 1", price: 358 },
-  { id: 2, name: "Product 2", price: 900 },
-  { id: 3, name: "Product 3", price: 345.75 },
-  { id: 4, name: "Product 4", price: 400 },
-  { id: 5, name: "Product 5", price: 563.87 },
-  { id: 6, name: "Product 6", price: 632 },
-];
+import plant_data from '../data/plant.json'
+import Image from "next/image";
 
 export default function Products() {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
-
+// await new Promise((res)=>setTimeout(res,1000))
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-blue-200 py-10 px-6">
       {/* ---------- HEADER ---------- */}
@@ -34,20 +27,25 @@ export default function Products() {
 
       {/* ---------- PRODUCTS GRID ---------- */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-        {data.map((p) => (
+        {plant_data.map((p) => (
           <div
             key={p.id}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center"
+            className="bg-white w-full rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center"
           >
-            <div className="w-24 h-24 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex justify-center items-center text-2xl text-white font-semibold mb-4">
-              {p.name[0]}
+            <div className="w-24 h-24 bg-gradient-to-r overflow-hidden from-blue-400 to-cyan-400 rounded-full flex justify-center items-center text-2xl text-white font-semibold mb-4">
+              {/* {p.name[0]} */}
+              <img src={p.image} alt={p.name} loading="lazy"/>
             </div>
 
             <h2 className="text-xl font-semibold text-gray-800 mb-1">
               {p.name}
             </h2>
             <p className="text-gray-600 text-lg mb-4">${p.price.toFixed(2)}</p>
+              <span className="flex justify-center items-center gap-5">
+              <span>{p.type}</span>
+              <span>{p.shape}</span>
 
+              </span>
             {!cart.find((item) => item.id === p.id) && (
               <button
                 onClick={() => dispatch(addToCart(p))}
