@@ -38,7 +38,7 @@ export default function ReduxProvider({ children }) {
   const [role, setRole] = useState("user");
 
   return (
-    // ✅ Wrap everything with the Provider
+  
     <Provider store={store}>
       <AppContent role={role} setRole={setRole}>
         {children}
